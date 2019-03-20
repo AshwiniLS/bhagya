@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Contains \Drupal\payroll_user\Controller\Controller6.
+ */
+namespace Drupal\payroll_user\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Link;
+
+class Controller6 extends ControllerBase {
+	
+  public function content() {
+	  
+    return array(
+      '#type' => 'markup',
+      '#markup' => $this->t('User Dashboard'),
+    );
+  }
+	
+	public function content1() {
+	  
+    $url = "/mypayroll/168947";
+	$response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+	$response->send();
+	return;
+	  
+     
+	
+	
+  }
+  
+  	
+	public function content2() {
+		if (user is administrator) {
+			$menus_for_admin = [
+			  'csv_import' =
+			  'adminster_users' 
+			
+			]
+		}
+		else {
+			$menus_for_user = [
+			  'csv_import' => [
+				'path' => '/user/import/',
+				'label' => $this->t('User Import'),
+			  'adminster_users' 
+			    'path' => '/user/import/',
+				'label' => $this->t('User Import'),
+			
+			]
+		}
+	  
+		return array(
+		  '#type' => 'markup',
+		  '#markup' => $links
+		  
+		);	
+
+	}  
+	
+	public function renderLinks($links) {
+		$links = '';
+		foreach($links as $link) {
+		  $links .= Link::fromTextAndUrl($link['label'], $link['path'])->toString();
+		}
+		return $links;
+	}
+}
